@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BcHomeService } from './bc-home.service';
-import { Cep } from './cep';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bc-home',
@@ -10,35 +9,51 @@ import { FormBuilder, FormControl } from '@angular/forms';
 })
 export class BcHomeComponent implements OnInit {
 
-  
-  cep = ''; 
-  dadosEndereco: Cep[] = [];
 
-  
   formEndereco = this.formBuilder.group({
-    cep: new FormControl(null),
-    logradouro: new FormControl(null),
-    complemento: new FormControl(null),
-    bairro: new FormControl(null),
-    localidade:new FormControl(null),
-    uf: new FormControl(null),
-    ibge: new FormControl(null),
-    gia: new FormControl(null),
-    ddd: new FormControl(null),
-    siafi: new FormControl(null),
+    cep: new FormControl(''),
+    logradouro: new FormControl(''),
+    numero: new FormControl(null, Validators.required),
+    complemento: new FormControl(''),
+    bairro: new FormControl(''),
+    localidade:new FormControl(''),
+    uf: new FormControl(''),
+    ibge: new FormControl(''),
+    gia: new FormControl(''),
+    ddd: new FormControl(''),
+    siafi: new FormControl(''),
   });
   
   constructor(
     public bcservice: BcHomeService,
-    private formBuilder: FormBuilder
+    public formBuilder: FormBuilder
     ) { }
   ngOnInit(): void {
   }
 
-  buscaCep(cep: any) {
+  buscaCep() {
+    let cep = this.formEndereco.value.cep;
     this.bcservice.getCep(cep).subscribe((res:any) => {
-      this.dadosEndereco = res;
+      this.formEndereco.setValue(
+        {
+         'cep': res.cep,
+         'logradouro':res.logradouro,
+         'numero': null,
+         'complemento': res.complemento,
+         'bairro': res.bairro,
+         'localidade': res.localidade,
+         'uf': res.uf,
+         'ibge': res.ibge,
+         'gia': res.gia,
+         'ddd': res.ddd,
+         'siafi': res.siafi
+        })
+      //this.formEndereco.setValue(res); // não pode ser usado dessa forma porque não tem o numero no retorno da api 
     })
+  }
+
+  submitForm(){
+    console.log(JSON.stringify(this.formEndereco.value));
   }
 
 }

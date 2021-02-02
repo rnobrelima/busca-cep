@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Cep } from './cep';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,10 +10,10 @@ export class BcHomeService {
 
   constructor(public http: HttpClient) { }
 
-  getCep(cep: any): Observable<Cep[]> {
+  getCep(cep: any): Observable<any[]> {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
       .pipe(
-        map((res: Cep[]) => {
+        map((res: any[]) => {
           return res
         }))}
       

@@ -1,46 +1,57 @@
-<section class="section-endereco" >
-    <div>
-        <label for="cep">CEP:</label>
-        <input type="text" [(ngModel)]="cep">
-        <button (click)="buscaCep(cep)">BUSCAR</button>
-    </div>
+<form [formGroup]="formEndereco" class="form-endereco">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="cep">CEP:</label>
+            <input class="form-control" id="cep"  type="text"  formControlName="cep"> 
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="buscar">&nbsp;</label>
+            <button class="btn btn-primary btn-sm form-control" (click)="buscaCep()">BUSCAR</button>
+        </div>
     
-    <form [formGroup]="formEndereco">
-        <div>
-            <label for="logradouro">LOGRADOURO:</label>
-            <input id="logradouro" type="text" formControlName="logradouro" [(ngModel)]="dadosEndereco.logradouro">
-        </div>
-        <div>
-            <label for="complemento">COMPLEMENTO:</label>
-            <input id="complemento" type="text" formControlName="complemento" [(ngModel)]="dadosEndereco.complemento">
-        </div>
-        <div>
-            <label for="bairro">BAIRRO:</label>
-            <input id="bairro" type="text" formControlName="bairro" [(ngModel)]="dadosEndereco.bairro">
-        </div>
-        <div>
-            <label for="localidade">LOCALIDADE:</label>
-            <input id="localidade" type="text" formControlName="localidade" [(ngModel)]="dadosEndereco.localidade">
-        </div>
-        <div>
-            <label for="uf">UF:</label>
-            <input id="uf" type="text" formControlName="uf" [(ngModel)]="dadosEndereco.uf">
-        </div>
-        <div>
-            <label for="ibge">IBGE:</label>
-            <input id="ibge" type="text" formControlName="ibge" [(ngModel)]="dadosEndereco.ibge">
-        </div>
-        <div>
-            <label for="gia">GIA:</label>
-            <input id="gia" type="text" formControlName="gia" [(ngModel)]="dadosEndereco.gia">
-        </div>
-        <div>
-            <label for="ddd">DDD:</label>
-            <input id="ddd" type="text" formControlName="ddd" [(ngModel)]="dadosEndereco.ddd">
-        </div>
-        <div>
-            <label for="siafi">SIAFI:</label>
-            <input id="siafi" type="text" formControlName="siafi" [(ngModel)]="dadosEndereco.siafi">
-        </div>
-    </form>
-</section>
+    <div class="form-group col-md-7">
+        <label for="logradouro">LOGRADOURO:</label>
+        <input class="form-control" id="logradouro" type="text" formControlName="logradouro" >
+    </div>
+    <div class="form-group col-md-1">
+        <label for="numero">NUMERO:</label>
+        <input class="form-control" id="numero" type="text" formControlName="numero" >
+    </div>
+    <div class="form-group col-md-6">
+        <label for="complemento">COMPLEMENTO:</label>
+        <input class="form-control" id="complemento" type="text" formControlName="complemento" >
+    </div>
+    <div class="form-group col-md-6">
+        <label for="bairro">BAIRRO:</label>
+        <input class="form-control" id="bairro" type="text" formControlName="bairro" >
+    </div>
+    <div class="form-group col-md-8">
+        <label for="localidade">LOCALIDADE:</label>
+        <input class="form-control" id="localidade" type="text" formControlName="localidade" >
+    </div>
+    <div class="form-group col-md-2">
+        <label for="uf">UF:</label>
+        <input class="form-control" id="uf" type="text" formControlName="uf" >
+    </div>
+    <div class="form-group col-md-2">
+        <label for="ibge">IBGE:</label>
+        <input class="form-control" id="ibge" type="text" formControlName="ibge" >
+    </div>
+    <div class="form-group col-md-1">
+        <label for="ddd">DDD:</label>
+        <input class="form-control" id="ddd" type="text" formControlName="ddd" >
+    </div>
+    <div class="form-group col-md-3">
+        <label for="gia">GIA:</label>
+        <input class="form-control" id="gia" type="text" formControlName="gia" >
+    </div>
+    <div class="form-group col-md-3">
+        <label for="siafi">SIAFI:</label>
+        <input class="form-control" id="siafi" type="text" formControlName="siafi" >
+    </div>
+</div>
+<div class="col-md-6 offset-md-3" >
+    <button  class="btn btn-secondary btn-lg btn-block " (click)=submitForm()>Submit</button>
+</div>
+</form>
