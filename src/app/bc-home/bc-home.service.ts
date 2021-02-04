@@ -16,6 +16,10 @@ export class BcHomeService {
         map((res: any[]) => {
           return res
         }))}
+
+  postCep(data: any){
+    console.log(data) // enviar os dados para onde for necessário
+  }
       
       
 }

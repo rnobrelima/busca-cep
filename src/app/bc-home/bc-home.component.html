@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-md-1">
         <label for="numero">NUMERO:</label>
-        <input class="form-control" id="numero" type="text" formControlName="numero" >
+        <input class="form-control" id="numero" type="text" formControlName="numero" required>
     </div>
     <div class="form-group col-md-6">
         <label for="complemento">COMPLEMENTO:</label>
@@ -52,6 +52,6 @@
     </div>
 </div>
 <div class="col-md-6 offset-md-3" >
-    <button  class="btn btn-secondary btn-lg btn-block " (click)=submitForm()>Submit</button>
+    <button  class="btn btn-secondary btn-lg btn-block " (click)=submitForm() [disabled]="formEndereco.invalid">Submit</button>
 </div>
 </form>
