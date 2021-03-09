@@ -10,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class BcHomeComponent implements OnInit {
 
   formEndereco: FormGroup;
-  
+
   constructor(
     public bcservice: BcHomeService,
     public formBuilder: FormBuilder
@@ -32,29 +32,30 @@ export class BcHomeComponent implements OnInit {
     });
   }
 
-  buscaCep() {
-    let cep = this.formEndereco.value.cep;
-    this.bcservice.getCep(cep).subscribe((res:any) => {
+  buscaCep(): void {
+    const cep = this.formEndereco.value.cep;
+    // tslint:disable-next-line: deprecation
+    this.bcservice.getCep(cep).subscribe((res: any) => {
       this.formEndereco.setValue(
         {
-         'cep': res.cep,
-         'logradouro':res.logradouro,
-         'numero': null,
-         'complemento': res.complemento,
-         'bairro': res.bairro,
-         'localidade': res.localidade,
-         'uf': res.uf,
-         'ibge': res.ibge,
-         'gia': res.gia,
-         'ddd': res.ddd,
-         'siafi': res.siafi
-        })
-      //this.formEndereco.setValue(res); // não pode ser usado dessa forma porque não tem o numero no retorno da api 
-    })
+         cep: res.cep,
+         logradouro:res.logradouro,
+         numero: null,
+         complemento: res.complemento,
+         bairro: res.bairro,
+         localidade: res.localidade,
+         uf: res.uf,
+         ibge: res.ibge,
+         gia: res.gia,
+         ddd: res.ddd,
+         siafi: res.siafi
+        });
+      // this.formEndereco.setValue(res); // não pode ser usado dessa forma porque não tem o numero no retorno da api
+    });
   }
-  
-  submitForm(){
-    this.bcservice.postCep(JSON.stringify(this.formEndereco.value))
+
+  submitForm(): void{
+    this.bcservice.postCep(JSON.stringify(this.formEndereco.value));
   }
 
 }

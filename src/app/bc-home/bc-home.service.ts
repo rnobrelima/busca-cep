@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -14,12 +14,10 @@ export class BcHomeService {
     return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
       .pipe(
         map((res: any[]) => {
-          return res
-        }))}
+          return res;
+        })); }
 
-  postCep(data: any){
-    console.log(data) // enviar os dados para onde for necessário
+  postCep(data: any): void{
+    console.log(data);
   }
-      
-      
 }
